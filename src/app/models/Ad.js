@@ -1,4 +1,5 @@
 const moongose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 
 const Ad = new moongose.Schema({
   title: {
@@ -10,7 +11,6 @@ const Ad = new moongose.Schema({
     required: true
   },
   author: {
-    // Grava um id
     type: moongose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
@@ -24,5 +24,7 @@ const Ad = new moongose.Schema({
     default: Date.now
   }
 })
+
+Ad.plugin(mongoosePaginate)
 
 module.exports = moongose.model('Ad', Ad)
